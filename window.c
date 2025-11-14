@@ -2,8 +2,15 @@
 #include <stdio.h>
 
 int main() {
+	const char *display_name = ":1";
+	Display* display = XOpenDisplay(display_name);
+	XSelectInput( // intercept requests from apps to X server
+		display,
+		DefaultRootWindow(display),
+		SubstructureRedirectMask | SubstructureNotifyMask);
+	XSync(display, 0); // flush request
+	
 	XEvent event;
-	Display* display = XOpenDisplay(NULL);
 	Window w = XCreateSimpleWindow(display, DefaultRootWindow(display), 50, 50, 250, 250, 1, BlackPixel(display,0), WhitePixel(display,0));
 	XMapWindow(display,w);
 	XSelectInput(display,w,KeyPressMask); // what type of event the server reports to the client
