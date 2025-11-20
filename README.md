@@ -3,7 +3,7 @@ Currently studying X11
 To compile, run:
 
 ```
-gcc window.c -lX11
+gcc window_manager.c -lX11
 ```
 
 <h2>Xephyr</h2>
