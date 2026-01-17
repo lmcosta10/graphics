@@ -39,13 +39,15 @@ int main() {
 	for (;;) {
 		XNextEvent(display, &event);
 		XQueryPointer(display, w, &root_return, &child_return, &root_x, &root_y, &win_x, &win_y, &mask_return);
-        snprintf(buffer, sizeof(buffer), "Oi %d %d", win_x, win_y);
+                snprintf(buffer, sizeof(buffer), "Oi %d %d", win_x, win_y);
+                
+                int string_size = 3 + 1 + (win_x >= 10) + (win_x >= 100) + 1 + (win_y >= 10) + (win_y >= 100);
 		
 		// When a key is pressed,
 		// Clear area in which string is printed, then print new string
 		if (event.type == KeyPress) {
 			XClearArea(display,w,100,90,100,20,False);
-			XDrawString(display,w,DefaultGC(display,0),100,100,buffer,100);
+			XDrawString(display,w,DefaultGC(display,0),100,100,buffer,string_size);
 		}
 		buffer[0] = '\0';
 	}

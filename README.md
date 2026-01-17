@@ -16,6 +16,8 @@ Running it:
 Xephyr :1 -ac -screen 800x600 &
 ```
 
+If you receive an error saying "Server is already active for display 1", you can change ":1" to something else (such as ":2"). Remember to change this on the following steps too.
+
 Using it:
 
 Option 1:
